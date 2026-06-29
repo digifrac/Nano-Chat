@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nano Chat User Guide</title>
+<style>
+  :root {
+    --ink: #1b1b22;
+    --muted: #5a5a68;
+    --line: #e6e6ee;
+    --bg: #ffffff;
+    --soft: #f6f6fb;
+    --accent: #ff4d00;
+    --accent_soft: #fff0ea;
+    --radius: 10px;
+    --maxw: 820px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 96px; }
+  header.masthead {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 64px 24px 28px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  h1 {
+    font-size: 40px;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+  }
+  .lede { font-size: 19px; color: var(--muted); margin: 0; max-width: 60ch; }
+  h2 {
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin: 56px 0 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  h3 { font-size: 19px; margin: 32px 0 10px; }
+  p { margin: 0 0 16px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { font-weight: 650; }
+  code {
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font: 14px/1.5 "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    color: #c2410c;
+  }
+  pre {
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    overflow: auto;
+    font: 13.5px/1.6 "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    margin: 0 0 24px;
+  }
+  pre code { background: none; border: none; padding: 0; color: var(--ink); }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .callout {
+    background: var(--accent_soft);
+    border: 1px solid #ffd9c9;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 16px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  nav.toc {
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin: 36px 0 8px;
+  }
+  nav.toc h2 {
+    border: none;
+    padding: 0;
+    margin: 0 0 12px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  nav.toc ol { columns: 2; column-gap: 32px; margin: 0; }
+  nav.toc a { color: var(--ink); }
+  footer.endmatter {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 32px; }
+    nav.toc ol { columns: 1; }
+    header.masthead { padding-top: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <p class="eyebrow">Nano Chat</p>
+  <h1>User Guide</h1>
+  <p class="lede">A plain language guide to running Nano Chat: uploading the folder, setting a password, going online, and answering chats from your website visitors. You do not need to be a developer. If you can upload files and follow a few steps, you can run it.</p>
+</header>
+
+<div class="wrap">
+
+  <nav class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#what">What Nano Chat does</a></li>
+      <li><a href="#layout">How Nano Chat is laid out</a></li>
+      <li><a href="#upload">Step 1: upload the folder</a></li>
+      <li><a href="#install">Step 2: run the installer</a></li>
+      <li><a href="#settings">Step 3: set your password and settings</a></li>
+      <li><a href="#embed">Step 4: add the button to your site</a></li>
+      <li><a href="#tidy">Step 5: tidy up</a></li>
+      <li><a href="#answer">Answering chats day to day</a></li>
+      <li><a href="#offline">What visitors see when you are offline</a></li>
+      <li><a href="#again">Editing your settings later</a></li>
+      <li><a href="#trouble">If something does not work</a></li>
+      <li><a href="#cost">Cost and licence</a></li>
+      <li><a href="#help">Need a hand</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="what">What Nano Chat does</h2>
+  <p>Nano Chat puts a <strong>"Chat with us"</strong> button on your website. A visitor clicks it, chooses what their message is about, and types to you. You answer from a single page you keep open, like a chat desk. Messages travel over your normal web host. There is no third party service, no monthly fee, and nothing for the visitor to install.</p>
+  <p>It is <strong>live chat</strong>. When your page is open and you are online, messages go back and forth within a couple of seconds. When you are not online, the visitor's chat box greys out and tells them to check back, so no one is left waiting for a reply that cannot come.</p>
+
+  <h2 id="layout">How Nano Chat is laid out</h2>
+  <p>There are three simple parts.</p>
+  <p><strong>The admin sets it up.</strong> A private admin area where you choose your password, your branding, and the list of subjects. You use it once at the start, then remove it.</p>
+  <p><strong>The console is where you answer.</strong> One page you keep open. It shows the queue of chats and lets you reply.</p>
+  <p><strong>The button is what visitors see.</strong> A small snippet you paste onto your website. It shows the button and opens the chat popup.</p>
+
+  <h2 id="upload">Step 1: upload the folder</h2>
+  <ol>
+    <li>Open your file manager or FTP program.</li>
+    <li>Go into your website, the folder that holds your home page (often called <code>public_html</code>).</li>
+    <li>Upload the Nano Chat files into a new folder named <code>chat</code>.</li>
+  </ol>
+  <p>You should now have <code>chat</code> sitting next to your home page, reachable at <code>https://yoursite.com/chat/</code>.</p>
+
+  <h2 id="install">Step 2: run the installer</h2>
+  <ol>
+    <li>In your browser, go to <code>https://yoursite.com/chat/install.php</code>.</li>
+    <li>You will see a config folder path already filled in. Leave it as it is unless you have a reason to change it.</li>
+    <li>Click the create button.</li>
+  </ol>
+  <p>This sets up a small private folder, outside your website, where your password and settings are kept safe.</p>
+
+  <h2 id="settings">Step 3: set your password and settings</h2>
+  <p>The installer sends you to the admin page. There you:</p>
+  <ol>
+    <li>Type an <strong>admin password</strong> (at least 10 characters), then type it again to confirm. This password also protects your console.</li>
+    <li>Set your <strong>display name</strong> (for example your business name), the <strong>button label</strong>, an <strong>accent colour</strong> and a short <strong>greeting</strong>.</li>
+    <li>List your <strong>subjects</strong>, one per line, for example Sales, Support, General enquiry. The first one is selected by default.</li>
+    <li>Set the <strong>Site URL</strong> to the address where Nano Chat is installed. This is used by your licence, if you buy one.</li>
+    <li>If you have a <strong>licence key</strong>, paste it in. This removes the small "Powered by Nano Chat" line.</li>
+    <li>Copy the <strong>embed snippet</strong> the page shows you. You will need it in the next step.</li>
+  </ol>
+
+  <h2 id="embed">Step 4: add the button to your site</h2>
+  <p>Paste the snippet from the admin page onto any page that should have the button. There are two styles.</p>
+  <p><strong>A floating button</strong> that sits in a corner of every page:</p>
+  <pre><code>&lt;script src="https://yoursite.com/chat/js/embed.js" data-nano-call="floating"&gt;&lt;/script&gt;</code></pre>
+  <p><strong>An inline button</strong> that appears exactly where you put the placeholder:</p>
+  <pre><code>&lt;script src="https://yoursite.com/chat/js/embed.js"&gt;&lt;/script&gt;
+&lt;span data-nano-call-button&gt;&lt;/span&gt;</code></pre>
+  <p>Both open the same chat popup, with your branding and label.</p>
+
+  <h2 id="tidy">Step 5: tidy up</h2>
+  <ol>
+    <li>Delete <code>install.php</code> from the <code>chat</code> folder. The installer offers a button to do this for you.</li>
+    <li>When you have finished your settings, delete the whole <code>admin</code> folder.</li>
+  </ol>
+  <div class="callout">
+    <p>Your chat keeps working. Your password and settings are stored safely outside the website, and the console reads them as needed. Removing the admin just means there is nothing sensitive sitting on the public site while you are not editing.</p>
+  </div>
+
+  <h2 id="answer">Answering chats day to day</h2>
+  <ol>
+    <li>Open <code>https://yoursite.com/chat/</code> and log in with your admin password.</li>
+    <li>Click <strong>Go online</strong> and leave the tab open. You are now staffing the line.</li>
+    <li>When a visitor starts a chat, it appears in your queue with its subject. A green dot shows when that visitor is currently on the page.</li>
+    <li>Click a chat to open it, type your reply, and send. The visitor sees it within a couple of seconds.</li>
+    <li>Click <strong>Close chat</strong> when the conversation is done. The visitor is told it was closed, and can send a new message to reopen it.</li>
+  </ol>
+  <p>If you allow browser notifications, you get a small pop when a new chat comes in, even if the tab is in the background.</p>
+
+  <h2 id="offline">What visitors see when you are offline</h2>
+  <p>Nano Chat is live chat, so it is honest when no one is there. When your console is not online:</p>
+  <ul>
+    <li>The chat popup is <strong>greyed out</strong> and shows a short note asking the visitor to check back when you are online.</li>
+    <li>The message box is disabled, so no one leaves a message that cannot be answered.</li>
+    <li>As soon as you go online, the popup comes back to life on its own.</li>
+  </ul>
+  <p>While a chat is open, both sides can see whether the other is online or away, and both are told when the other person closes the chat.</p>
+
+  <h2 id="again">Editing your settings later</h2>
+  <p>When you want to change your settings, subjects or branding in future:</p>
+  <ol>
+    <li>Upload the <code>admin</code> folder back into <code>chat</code>.</li>
+    <li>Go to <code>https://yoursite.com/chat/admin/</code> and log in.</li>
+    <li>Make your changes and save.</li>
+    <li>Delete the <code>admin</code> folder again when done.</li>
+  </ol>
+
+  <h2 id="trouble">If something does not work</h2>
+  <ul>
+    <li><strong>The installer cannot create the config folder.</strong> Create it by hand in your file manager, set it to permission 750, then reload the installer page.</li>
+    <li><strong>The page says it cannot write to data.</strong> Set the <code>data</code> folder permission to 755 in your host control panel (look for a permissions or CHMOD option).</li>
+    <li><strong>The button does not appear.</strong> Check the snippet points at the right address, for example <code>https://yoursite.com/chat/js/embed.js</code>, and that the <code>chat</code> folder really is on the server.</li>
+    <li><strong>You changed something but the site looks the same.</strong> Your browser may be showing a saved copy. Refresh with the cache cleared (hold Ctrl and press F5), or open the page in a private window.</li>
+  </ul>
+
+  <h2 id="cost">Cost and licence</h2>
+  <p>Nano Chat is <strong>free</strong> and MIT licensed. You can use it on as many sites as you like with a small "Powered by Nano Chat" line shown under the button.</p>
+  <p>To remove that line, you can buy a <strong>per-domain licence key for 19.99 pounds</strong>, a one off payment per domain. It is verified on your own server, with no phone-home and no monthly fee.</p>
+
+  <h2 id="help">Need a hand</h2>
+  <p>Contact Digital Fracture through the website. Nano Chat is part of the Nano Suite, alongside Nano CMS, Nano Cart, Nano 301 and Nano GDPR.</p>
+
+  <div class="callout">
+    <p>Nano Chat is free and always will be. If it saved you some time, you can <a href="https://buymeacoffee.com/digitalfracture">buy me a coffee</a>. Thank you.</p>
+  </div>
+
+  <footer class="endmatter">
+    <p>Nano Chat &middot; part of the Nano Suite &middot; Developed by <a href="https://digitalfracture.co.uk">Digital Fracture</a> &middot; <a href="https://buymeacoffee.com/digitalfracture">Buy me a coffee</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

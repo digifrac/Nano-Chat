@@ -1,0 +1,19 @@
+# Runtime files written per install - never commit anything under data/
+# except the .htaccess that protects the folder. (No trailing # comments on
+# pattern lines: git treats them as part of the pattern.)
+data/*
+!data/.htaccess
+
+# Per-site bootstrap - written by install.php; holds the absolute path to the
+# outside-webroot config dir. Per-install, never committed.
+/bootstrap.php
+
+# Internal pre-launch notes - contain live relay secrets. Never publish.
+/TODO.md
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
+.idea/
+.vscode/

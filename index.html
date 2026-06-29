@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nano Chat - console</title>
+  <script>(function(){var t=localStorage.getItem('nano-call.theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+  <link rel="stylesheet" href="css/style.css?v=5" />
+</head>
+<body>
+  <main class="phone">
+    <header class="bar">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8l-4 4V5a1 1 0 0 1 1-1z"/></svg>
+      <h1><span id="brandName">Nano Chat</span> <span class="barTag">console</span></h1>
+      <span class="dot" id="netDot" title="Connection to your chat server"></span>
+    </header>
+
+    <!-- 1. log in (admin password) and go online -->
+    <section id="login" class="screen">
+      <p class="lede">Go online to receive chats. Keep this page open - it is your inbox being staffed.</p>
+      <label for="adminPass">Admin password</label>
+      <div class="pwWrap">
+        <input id="adminPass" type="password" autocomplete="current-password" placeholder="your admin password" />
+        <button type="button" id="pwPeek" class="pwPeek" aria-label="Show password" aria-pressed="false" title="Show password">
+          <svg class="ic-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C6 5 2.7 9.6 1.5 12 2.7 14.4 6 19 12 19s9.3-4.6 10.5-7C21.3 9.6 18 5 12 5zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+          <svg class="ic-eye-off hidden" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4.3 3.3 3l17.7 17.7-1.3 1.3-3-3c-1.4.5-3 .7-4.7.7-6 0-9.3-4.6-10.5-7 .5-1.1 1.4-2.5 2.9-3.7L2 4.3zM12 8c2.2 0 4 1.8 4 4 0 .4-.1.8-.2 1.2l-5-5c.4-.1.8-.2 1.2-.2zm-3.8 1.6 1.5 1.5c-.1.3-.1.6-.1.9a2.3 2.3 0 0 0 2.8 2.8l1.5 1.5c-.6.2-1.2.4-1.9.4-2.2 0-4-1.8-4-4 0-.7.1-1.3.3-1.9z"/></svg>
+        </button>
+      </div>
+      <button id="goOnline" class="primary big">Go online</button>
+      <p class="hint" id="loginHint" role="status" aria-live="assertive"></p>
+    </section>
+
+    <!-- 2. the queue of conversations -->
+    <section id="queue" class="screen hidden">
+      <div class="queueHead">
+        <p class="me">Online as <strong id="onlineAs"></strong></p>
+        <button id="goOffline" class="linkBtn">Go offline</button>
+      </div>
+      <ul id="chatList" class="chatList"></ul>
+      <p class="hint" id="queueHint" role="status">Waiting for chats. Leave this page open.</p>
+    </section>
+
+    <!-- 3. one open conversation -->
+    <section id="thread" class="screen hidden">
+      <div class="threadHead">
+        <button id="backBtn" class="iconBtn" aria-label="Back to all chats">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>
+        </button>
+        <div class="threadTitle">
+          <strong id="threadSubject"></strong>
+          <span class="threadState" id="threadState"></span>
+        </div>
+        <button id="closeChatBtn" class="linkBtn">Close chat</button>
+      </div>
+      <div class="thread" id="threadMsgs" aria-live="polite"></div>
+      <form class="composer" id="composer">
+        <input id="reply" autocomplete="off" placeholder="Type a reply…" maxlength="4000" />
+        <button type="submit" class="primary sendBtn" aria-label="Send">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/core.js?v=6"></script>
+  <script src="js/console.js?v=6"></script>
+</body>
+</html>
