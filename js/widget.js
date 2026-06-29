@@ -65,6 +65,9 @@
     $('msgInput').placeholder = on ? 'Type a message…' : 'Offline right now';
   }
 
+  // grow the message box with the text (up to the CSS max-height, then it scrolls)
+  function autoGrow(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 160) + 'px'; }
+
   function setStatus(online, status, closedBy) {
     const el = $('chatStatus');
     // live-only: if no operator is online there is no one to answer, so we grey
@@ -143,6 +146,7 @@
     const text = input.value.trim();
     if (!text) return;
     input.value = '';
+    autoGrow(input);              // shrink back to one line after sending
     // optimistic: show it immediately, the next poll reconciles
     const msgs = Array.from(thread.querySelectorAll('.msg .bubble')).map((b, i) => ({
       from: thread.children[i].classList.contains('them') ? 'operator' : 'visitor', text: b.textContent,
@@ -166,6 +170,8 @@
   $('startBtn').onclick = start;
   $('firstMsg').addEventListener('keydown', (e) => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) start(); });
   $('composer').addEventListener('submit', sendMsg);
+  $('msgInput').addEventListener('input', (e) => autoGrow(e.target));
+  $('msgInput').addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } });
   document.querySelectorAll('.closeBtn').forEach((b) => { b.onclick = closeWidget; });
 
   show('intro');

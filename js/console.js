@@ -197,14 +197,18 @@
   }
 
   // ---------- reply / close ----------
+  // grow the reply box with the text (up to the CSS max-height, then it scrolls)
+  function autoGrow(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 160) + 'px'; }
+
   async function sendReply(e) {
     if (e) e.preventDefault();
     const input = $('reply');
     const text = input.value.trim();
     if (!text || !openId) return;
     input.value = '';
+    autoGrow(input);                         // shrink back to one line after sending
     try { await NC.send(text, openId); renderedKey = ''; NC.startPolling(); }
-    catch { input.value = text; }           // put it back so nothing is lost
+    catch { input.value = text; autoGrow(input); }   // put it back so nothing is lost
   }
   async function closeChat() {
     if (!openId) return;
@@ -224,6 +228,8 @@
   $('clearClosed').onclick = clearClosed;
   $('clearAll').onclick = clearAll;
   $('composer').addEventListener('submit', sendReply);
+  $('reply').addEventListener('input', (e) => autoGrow(e.target));
+  $('reply').addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendReply(); } });
 
   // closing the page drops you offline - warn while online
   window.addEventListener('beforeunload', (e) => { if (NC.name) { e.preventDefault(); e.returnValue = ''; } });

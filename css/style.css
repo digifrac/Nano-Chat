@@ -361,9 +361,20 @@ button.big { padding: 14px 18px; font-size: 1rem; width: 100%; }
 .msg.them .bubble { background: var(--card); border: 1px solid var(--line); color: var(--ink); border-bottom-left-radius: 5px; }
 
 /* the reply / message composer, shared by console + widget */
-.composer { display: flex; gap: 8px; }
-.composer input { flex: 1; }
-.sendBtn { flex: none; width: 46px; padding: 0; }
+.composer { display: flex; gap: 8px; align-items: flex-end; }
+/* auto-growing message box: starts at one line, grows with the message up to a
+   few lines, then scrolls - so a long message is visible while you type it */
+.composer textarea {
+  flex: 1;
+  min-height: 46px;
+  max-height: 160px;
+  height: 46px;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.45;
+  padding: 11px 14px;
+}
+.sendBtn { flex: none; width: 46px; height: 46px; padding: 0; }
 
 /* ============================================================ VISITOR WIDGET */
 body.widget { place-items: stretch; padding: 0; background: var(--card); }

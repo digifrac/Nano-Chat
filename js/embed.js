@@ -22,7 +22,7 @@
   // site root, e.g. .../chat/ - strip the js/ folder this script lives in
   // (still works if embed.js is served from the root, for compatibility)
   var base = script.src.replace(/(?:js\/)?embed\.js(\?.*)?$/, '');
-  var widgetUrl = base + 'widget.html?v=2';
+  var widgetUrl = base + 'widget.html?v=3';
   var mode = (script.getAttribute('data-nano-call') || '').toLowerCase();   // 'floating' | 'inline' | ''
 
   // ---------- styles (scoped to .nanocall- classes) ----------

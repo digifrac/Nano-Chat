@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nano Chat - console</title>
   <script>(function(){var t=localStorage.getItem('nano-call.theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
-  <link rel="stylesheet" href="css/style.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
 </head>
 <body>
   <main class="phone">
@@ -59,7 +59,7 @@
       </div>
       <div class="thread" id="threadMsgs" aria-live="polite"></div>
       <form class="composer" id="composer">
-        <input id="reply" autocomplete="off" placeholder="Type a reply…" maxlength="4000" />
+        <textarea id="reply" rows="1" autocomplete="off" placeholder="Type a reply…" maxlength="4000"></textarea>
         <button type="submit" class="primary sendBtn" aria-label="Send">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg>
         </button>
@@ -68,6 +68,6 @@
   </main>
 
   <script src="js/core.js?v=7"></script>
-  <script src="js/console.js?v=7"></script>
+  <script src="js/console.js?v=8"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chat with us</title>
   <script>(function(){var t=localStorage.getItem('nano-call.theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
 </head>
 <body class="widget">
   <main class="wphone">
@@ -55,7 +55,7 @@
       <p class="chatStatus" id="chatStatus" role="status"></p>
       <div class="thread" id="thread" aria-live="polite"></div>
       <form class="composer" id="composer">
-        <input id="msgInput" autocomplete="off" placeholder="Type a message…" maxlength="4000" />
+        <textarea id="msgInput" rows="1" autocomplete="off" placeholder="Type a message…" maxlength="4000"></textarea>
         <button type="submit" class="primary sendBtn" aria-label="Send">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg>
         </button>
@@ -68,7 +68,7 @@
     </p>
   </main>
 
-  <script src="js/core.js?v=6"></script>
-  <script src="js/widget.js?v=6"></script>
+  <script src="js/core.js?v=7"></script>
+  <script src="js/widget.js?v=7"></script>
 </body>
 </html>
