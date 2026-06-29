@@ -5,6 +5,17 @@ All notable changes to Nano Chat are recorded here. Format loosely follows
 
 ## [Unreleased]
 
+### Security
+
+- Raised the admin password minimum to 10 characters (was 8), matching the
+  guide. Existing passwords keep working; the floor applies when creating or
+  changing one.
+
+### Fixed
+
+- Admin page loaded a stale `style.css` version, which could break its colours
+  from a cached copy. Bumped to match the rest of the app.
+
 ### Added
 
 - **Chat cleanup from the console.** The operator can delete a single

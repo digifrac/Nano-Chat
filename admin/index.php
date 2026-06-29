@@ -102,7 +102,7 @@ if ($action !== '') {
 if ($action === 'setup' && !$isSetup) {
     $p1 = (string) ($_POST['pass'] ?? '');
     $p2 = (string) ($_POST['pass2'] ?? '');
-    if (strlen($p1) < 8)      { $error = 'Use a password of at least 8 characters.'; }
+    if (strlen($p1) < 10)     { $error = 'Use a password of at least 10 characters.'; }
     elseif ($p1 !== $p2)      { $error = 'The two passwords do not match.'; }
     else {
         $admin['passHash'] = password_hash($p1, PASSWORD_DEFAULT);
@@ -161,7 +161,7 @@ if ($action === 'save' && $loggedIn) {
         // optional password change
         $np = (string) ($_POST['newpass'] ?? '');
         if ($np !== '') {
-            if (strlen($np) < 8) { $error = 'New password must be at least 8 characters - other settings were saved.'; }
+            if (strlen($np) < 10) { $error = 'New password must be at least 10 characters - other settings were saved.'; }
             else {
                 $admin['passHash'] = password_hash($np, PASSWORD_DEFAULT);
                 save_json($ADMIN_FILE, $admin);
@@ -192,7 +192,7 @@ if ((string) $cfg['site_url'] !== '') {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nano Chat - admin</title>
-<link rel="stylesheet" href="../css/style.css?v=3" />
+<link rel="stylesheet" href="../css/style.css?v=7" />
 <style>
   body{place-items:start center;padding:32px 16px}
   .admin{width:min(640px,96vw);display:grid;gap:18px}
@@ -235,7 +235,7 @@ if ((string) $cfg['site_url'] !== '') {
     <!-- first run -->
     <form class="card" method="post">
       <h2>Create your admin password</h2>
-      <p class="muted">This password protects this admin page and is what your operator console needs to go online. Minimum 8 characters. There is no recovery, so store it safely.</p>
+      <p class="muted">This password protects this admin page and is what your operator console needs to go online. Minimum 10 characters. There is no recovery, so store it safely.</p>
       <input type="hidden" name="csrf" value="<?= h($csrf) ?>">
       <div class="field"><label>Admin password</label><input type="password" name="pass" autocomplete="new-password"></div>
       <div class="field"><label>Confirm password</label><input type="password" name="pass2" autocomplete="new-password"></div>
