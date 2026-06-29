@@ -97,6 +97,16 @@ Your chat keeps working. Your password and settings are stored safely outside th
 
 If you allow browser notifications, you get a small pop when a new chat comes in, even if the tab is in the background.
 
+## Cleaning up old chats
+
+You do not have to keep every chat. Junk and spam can be removed, on their own or in bulk.
+
+- **Delete one chat.** Each chat in the queue has a small **×** on the right. Click it to delete that chat. You can also open a chat and use the **Delete** button at the top.
+- **Clear closed.** The **Clear closed** button at the top of the queue removes every chat you have closed, in one go. A good end-of-day tidy.
+- **Clear all.** The **Clear all** button removes every chat, open or closed. Use this with care.
+
+Deleting asks you to confirm first, and it cannot be undone. Closing a chat is the gentle option (it can be reopened); deleting is permanent. Chats you never get round to clearing are removed on their own after 14 quiet days.
+
 ## What visitors see when you are offline
 
 Nano Chat is live chat, so it is honest when no one is there. When your console is not online:

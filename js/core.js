@@ -80,10 +80,17 @@ const NC = (() => {
   async function close(chatId) {
     return api({ action: 'close', chat: chatId });
   }
+  // operator only: delete one chat for good, or bulk-clear ('closed' | 'all')
+  async function remove(chatId) {
+    return api({ action: 'delete', chat: chatId });
+  }
+  async function purge(scope) {
+    return api({ action: 'purge', scope });
+  }
 
   return {
     normName, getConfig, registerHost, startChat,
-    startPolling, stopPolling, send, close,
+    startPolling, stopPolling, send, close, remove, purge,
     setHooks: (h) => { hooks = h; },
     openThread: (id) => { openChat = id ? normName(id) : null; },
     get name() { return myName; },

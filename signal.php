@@ -321,6 +321,35 @@ switch ($action) {
             return $chat;
         });
         reply(['ok' => true]);
+
+    case 'delete':
+        // operator deletes ONE conversation for good (junk, spam, finished).
+        // Operator-only: closing is reversible, deleting is not.
+        if (!(($me === $business) && is_operator($token))) reply(['error' => 'not-host']);
+        $chatId = clean_name($in['chat'] ?? '');
+        if (!$chatId) reply(['error' => 'bad-name']);
+        @unlink(chat_path($chatId));
+        @unlink(seen_path($chatId));    // drop the visitor's presence marker too
+        reply(['ok' => true]);
+
+    case 'purge':
+        // operator bulk-clears conversations. scope:
+        //   'closed' (default) - every chat marked closed
+        //   'all'              - every chat, open or closed (nuclear; UI confirms)
+        if (!(($me === $business) && is_operator($token))) reply(['error' => 'not-host']);
+        $scope   = ($in['scope'] ?? 'closed') === 'all' ? 'all' : 'closed';
+        $removed = 0;
+        foreach (glob("$DATA/chat-*.php") ?: [] as $f) {
+            $id = substr(basename($f, '.php'), 5);     // "chat-<id>" -> "<id>"
+            if ($scope === 'closed') {
+                $c = read_chat($id);
+                if (!is_array($c) || ($c['status'] ?? '') !== 'closed') continue;
+            }
+            @unlink($f);
+            @unlink(seen_path($id));
+            $removed++;
+        }
+        reply(['ok' => true, 'removed' => $removed]);
 }
 
 reply(['error' => 'bad-action']);

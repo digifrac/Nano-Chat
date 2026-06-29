@@ -37,6 +37,7 @@
   function renderQueue(chats) {
     const list = $('chatList');
     list.innerHTML = '';
+    $('queueTools').classList.toggle('hidden', !chats.length);   // bulk-clear bar only when there is something to clear
     if (!chats.length) { $('queueHint').textContent = 'Waiting for chats. Leave this page open.'; return; }
     $('queueHint').textContent = '';
     chats.forEach((c) => {
@@ -49,12 +50,35 @@
           '<span class="ciSubject"></span>' +
           '<span class="ciLast"></span>' +
         '</span>' +
-        (unread ? '<span class="ciBadge">new</span>' : '');
+        (unread ? '<span class="ciBadge">new</span>' : '') +
+        '<button class="ciDelete" title="Delete this chat" aria-label="Delete this chat">&times;</button>';
       li.querySelector('.ciSubject').textContent = c.subject || 'Chat';
       li.querySelector('.ciLast').textContent = (c.lastFrom === 'operator' ? 'You: ' : '') + (c.last || '');
       li.onclick = () => openChat(c.id, c.subject);
+      li.querySelector('.ciDelete').onclick = (e) => { e.stopPropagation(); deleteFromQueue(c.id, c.subject); };
       list.appendChild(li);
     });
+  }
+
+  // ---------- delete / clear ----------
+  async function deleteFromQueue(id, subject) {
+    if (!confirm('Delete this chat (' + (subject || 'Chat') + ')? This cannot be undone.')) return;
+    try { await NC.remove(id); delete lastTotals[id]; NC.startPolling(); } catch { /* next poll reconciles */ }
+  }
+  async function deleteOpenChat() {
+    if (!openId) return;
+    if (!confirm('Delete this chat for good? This cannot be undone.')) return;
+    try { await NC.remove(openId); } catch {}
+    delete lastTotals[openId];
+    backToQueue();
+  }
+  async function clearClosed() {
+    if (!confirm('Clear all closed chats? This cannot be undone.')) return;
+    try { await NC.purge('closed'); lastTotals = {}; NC.startPolling(); } catch {}
+  }
+  async function clearAll() {
+    if (!confirm('Clear ALL chats, including open ones? This cannot be undone.')) return;
+    try { await NC.purge('all'); lastTotals = {}; if (openId) backToQueue(); else NC.startPolling(); } catch {}
   }
 
   // the small line under the subject: visitor online/away, or who closed the chat
@@ -196,6 +220,9 @@
   $('goOffline').onclick = goOffline;
   $('backBtn').onclick = backToQueue;
   $('closeChatBtn').onclick = closeChat;
+  $('deleteChatBtn').onclick = deleteOpenChat;
+  $('clearClosed').onclick = clearClosed;
+  $('clearAll').onclick = clearAll;
   $('composer').addEventListener('submit', sendReply);
 
   // closing the page drops you offline - warn while online

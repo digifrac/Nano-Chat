@@ -3,6 +3,17 @@
 All notable changes to Nano Chat are recorded here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/); versions follow [SemVer](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- **Chat cleanup from the console.** The operator can delete a single
+  conversation (a `×` on each queue row, or a **Delete** button inside an open
+  chat) and bulk-clear from the queue: **Clear closed** removes every closed
+  chat, **Clear all** removes the lot. Deletes are operator-only and permanent
+  (with a confirm); the 14-day auto-sweep still runs as a backstop. New
+  `signal.php` actions `delete` and `purge` back this.
+
 ## [1.0.0] - 2026-06-29
 
 First release. A free, one-click **"Chat with us"** button for any website: a

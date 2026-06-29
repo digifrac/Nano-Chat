@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nano Chat - console</title>
   <script>(function(){var t=localStorage.getItem('nano-call.theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 <body>
   <main class="phone">
@@ -36,6 +36,10 @@
         <p class="me">Online as <strong id="onlineAs"></strong></p>
         <button id="goOffline" class="linkBtn">Go offline</button>
       </div>
+      <div class="queueTools hidden" id="queueTools">
+        <button id="clearClosed" class="linkBtn">Clear closed</button>
+        <button id="clearAll" class="linkBtn danger">Clear all</button>
+      </div>
       <ul id="chatList" class="chatList"></ul>
       <p class="hint" id="queueHint" role="status">Waiting for chats. Leave this page open.</p>
     </section>
@@ -51,6 +55,7 @@
           <span class="threadState" id="threadState"></span>
         </div>
         <button id="closeChatBtn" class="linkBtn">Close chat</button>
+        <button id="deleteChatBtn" class="linkBtn danger">Delete</button>
       </div>
       <div class="thread" id="threadMsgs" aria-live="polite"></div>
       <form class="composer" id="composer">
@@ -62,7 +67,7 @@
     </section>
   </main>
 
-  <script src="js/core.js?v=6"></script>
-  <script src="js/console.js?v=6"></script>
+  <script src="js/core.js?v=7"></script>
+  <script src="js/console.js?v=7"></script>
 </body>
 </html>

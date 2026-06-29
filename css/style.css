@@ -300,6 +300,27 @@ button.big { padding: 14px 18px; font-size: 1rem; width: 100%; }
   padding: 2px 7px;
 }
 
+/* destructive controls: delete one chat, or bulk-clear the queue */
+.linkBtn.danger { color: var(--danger); }
+.linkBtn.danger:hover { color: var(--danger-press); }
+
+.queueTools { display: flex; justify-content: flex-end; gap: 14px; margin: -4px 0 2px; }
+
+.ciDelete {
+  flex: none;
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.1rem; line-height: 1;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s var(--ease), color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.ciDelete:hover { opacity: 1; color: var(--danger); background: var(--well); }
+.chatItem:hover .ciDelete { opacity: 0.8; }
+
 /* ============================================================ OPEN THREAD */
 .threadHead { display: flex; align-items: center; gap: 10px; }
 .threadTitle { flex: 1; min-width: 0; display: grid; gap: 1px; }

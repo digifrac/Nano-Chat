@@ -101,7 +101,7 @@ Nano Chat is **MIT licensed** (see `LICENSE`). The code is free to use, and free
 
 ## Privacy and security
 
-- **No accounts, no phone book, no logs.** The server stores only the business config, a per-browser token, and the open conversations. Visitors are anonymous throwaway names, swept automatically after 14 idle days.
+- **No accounts, no phone book, no logs.** The server stores only the business config, a per-browser token, and the open conversations. Visitors are anonymous throwaway names, swept automatically after 14 idle days. The operator can also delete any chat from the console, one at a time or in bulk ("Clear closed" / "Clear all").
 - **The operator console is password protected.** Only someone with the admin password can put the business online, so a stranger cannot grab your line and read your chats.
 - **Config, password and licence key live outside the webroot.** The installer puts them in a directory above your public folder, so they are never served even if `.htaccess` is ignored (for example on nginx). Only `bootstrap.php` (PHP, never sent as text) points at them. The transient in-webroot files under `data/` are additionally `.php`-guarded so a direct request returns 403.
 
