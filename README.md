@@ -75,7 +75,7 @@ Visitor (any site)        signal.php              Operator console
   |                          |     the new chat in     |
   |                          |     the queue, opens it |
   |                          |     and replies ------->|
-  | <---- reply (on poll) -- |                         |
+  | <--------- reply (on poll) |                         |
   |======  live back and forth, a couple of seconds  ==|
 ```
 
