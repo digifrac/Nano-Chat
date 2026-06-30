@@ -3,29 +3,7 @@
 All notable changes to Nano Chat are recorded here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/); versions follow [SemVer](https://semver.org/).
 
-## [Unreleased]
-
-### Security
-
-- Raised the admin password minimum to 10 characters (was 8), matching the
-  guide. Existing passwords keep working; the floor applies when creating or
-  changing one.
-
-### Fixed
-
-- Admin page loaded a stale `style.css` version, which could break its colours
-  from a cached copy. Bumped to match the rest of the app.
-
-### Added
-
-- **Chat cleanup from the console.** The operator can delete a single
-  conversation (a `×` on each queue row, or a **Delete** button inside an open
-  chat) and bulk-clear from the queue: **Clear closed** removes every closed
-  chat, **Clear all** removes the lot. Deletes are operator-only and permanent
-  (with a confirm); the 14-day auto-sweep still runs as a backstop. New
-  `signal.php` actions `delete` and `purge` back this.
-
-## [1.0.0] - 2026-06-29
+## [1.0.0] - 2026-06-30
 
 First release. A free, one-click **"Chat with us"** button for any website: a
 visitor taps it, picks a subject, and talks to the business live in the browser.
@@ -72,6 +50,22 @@ Flat-file, plain PHP, no database, on ordinary shared hosting.
   request returns 403 with an empty body even where `.htaccess` is ignored
   (nginx), alongside `data/.htaccess`.
 - MIT licence; light/dark theme; reduced-motion support.
+- **Chat cleanup from the console.** The operator can delete a single
+  conversation (a `×` on each queue row, or a **Delete** button inside an open
+  chat) and bulk-clear from the queue: **Clear closed** removes every closed
+  chat, **Clear all** removes the lot. Deletes are operator-only and permanent
+  (with a confirm); the 14-day auto-sweep still runs as a backstop. New
+  `signal.php` actions `delete` and `purge` back this.
+
+### Fixed
+
+- Admin page loaded a stale `style.css` version, which could break its colours
+  from a cached copy.
+
+### Security
+
+- Admin password minimum raised to 10 characters. Existing passwords keep
+  working; the floor applies when creating or changing one.
 
 ### Notes
 
